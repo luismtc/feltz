@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Convierte XML FEL a tabla y hoja de cálculo, guatemala">
+  <meta name="author" content="Luis Miguel Tziná">
+  <title>FELTZ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <main id="feltz">
+    <div class="container px-2 py-5">
+      <form @submit.prevent="cargar">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputXML">Cargar XML</label>
+          <input type="file" class="form-control" @change="cargar" id="inputXML" multiple>
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            id="inputXMLDescargar"
+            v-if="registros.length > 0"
+            @click="descargar"
+          >Descargar</button>
+        </div>
+      </form>
+      <div class="alert alert-danger" role="alert" v-if="error.length > 0">
+        <template v-for="(i, key) in error" :key="key">
+          <strong>{{ i.name }}</strong> {{ i.error }}<br>
+        </template>
+      </div>
+      <div class="table-responsive text-nowrap" v-if="registros.length > 0" id="compras">
+        <table class="table table-hover table-striped table-bordered border-primary table-sm">
+          <thead>
+            <tr class="table-dark">
+              <th colspan='4'>Emisor</th>
+              <th colspan='3'>Receptor</th>
+              <th colspan='6'>DTE</th>
+              <th colspan='8'>Producto</th>
+            </tr>
+            <tr class="table-primary">
+              <th>Nombre</th>
+              <th>NIT</th>
+              <th>Correo</th>
+              <th>Afiliación IVA</th>
+              
+              <th>Correo</th>
+              <th>NIT</th>
+              <th>Nombre</th>
+      
+              <th>Fecha Emisión</th>
+              <th>Autorización</th>
+              <th>Serie</th>
+              <th>Número del DTE</th>
+              <th>Moneda</th>
+              <th>Tipo</th>
+      
+              <th>Bien O Servicio</th>
+              <th>Unidad Medida</th>
+              <th>Descripción</th>
+              <th class="text-end">Cantidad</th>
+              <th class="text-end">Precio Unitario</th>
+              <th class="text-end">Precio</th>
+              <th class="text-end">Descuento</th>
+              <th class="text-end">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(i, key) in registros" :key="key">
+              <td>{{ i.NombreComercial }}</td>
+              <td>{{ i.NITEmisor }}</td>
+              <td>{{ i.CorreoEmisor }}</td>
+              <td>{{ i.AfiliacionIVA }}</td>
+              <td>{{ i.CorreoReceptor }}</td>
+              <td>{{ i.IDReceptor }}</td>
+              <td>{{ i.NombreReceptor }}</td>
+              <td>{{ i.FechaHoraEmision }}</td>
+              <td>{{ i.NumeroAutorizacion }}</td>
+              <td>{{ i.Serie }}</td>
+              <td>{{ i.Numero }}</td>
+              <td>{{ i.CodigoMoneda }}</td>
+              <td>{{ i.Tipo }}</td>
+              <td>{{ i.BienOServicio }}</td>
+              <td>{{ i.UnidadMedida }}</td>
+              <td>{{ i.Descripcion }}</td>
+              <td class="text-end">{{ i.Cantidad }}</td>
+              <td class="text-end">{{ i.PrecioUnitario }}</td>
+              <td class="text-end">{{ i.Precio }}</td>
+              <td class="text-end">{{ i.Descuento }}</td>
+              <td class="text-end">{{ i.Total }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="b-example-divider"></div>
+  </main>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

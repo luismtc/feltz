@@ -1,2 +1,2 @@
 # feltz
-Convierte xml fel a tabla web y a xls 
+Convierte XML FEL a tabla web y ods (hoja de cálculo) 

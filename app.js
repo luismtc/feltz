@@ -78,7 +78,7 @@ const Feltz = {
         descargar () {
             if (this.registros.length > 0) {
                 let compras = document.getElementById('compras')
-                let blob = new Blob([compras.innerHTML], {type: 'application/vnd.oasis.opendocument.spreadsheet; charset=utf-8'})
+                let blob = new Blob([compras.innerHTML], {type: 'charset=utf-8; application/vnd.oasis.opendocument.spreadsheet'})
                 let url = URL.createObjectURL(blob)
 
                 let hdc = document.createElement('a')
